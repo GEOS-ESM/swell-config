@@ -1,0 +1,25 @@
+# Override for:
+#   swell create ingest_background_cf -o override_background.yaml
+#
+# This ingests/registers the 09Z GEOS-CF background forecast files in R2D2.
+# The HOFX example at 18Z will fetch forecast start 09Z, step PT9H.
+
+experiment_id: ops_cf_background_ingest_20251002T09Z
+
+start_cycle_point: '2025-10-10T09:00:00Z'
+final_cycle_point: '2025-10-20T09:00:00Z'
+cycle_times:
+  - T09
+model_components:
+  - geos_cf
+
+models:
+  geos_cf:
+    # Set true for training/preview. Set false for operational R2D2 writes.
+    dry_run: false
+
+    background_source_path: /css/gmao/geos-cf/NRTv2/priv/ana/Y%Y/M%m/D%d/GEOS.cf.ana.jdi_inst_1hr_glo_C360x360x6_v72.%Y%m%d_%H%Mz.R0.nc4
+    background_experiment: geos_cf_oper
+    horizontal_resolution: c360
+    store_as_symlink: true
+

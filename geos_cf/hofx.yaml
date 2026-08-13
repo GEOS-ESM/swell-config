@@ -1,0 +1,41 @@
+# Override for:
+#   swell create hofx_cf -o override_hofx.yaml
+#
+# This runs GEOS-CF HOFX after the background and observation ingest workflows
+# have completed successfully.
+
+experiment_id: ops_cf_hofx_20251010T12_20251020T00
+r2d2_experiment_id: ops_cf_hofx_20251010T12_20251020T00
+
+start_cycle_point: '2025-10-10T12:00:00Z'
+final_cycle_point: '2025-10-20T00:00:00Z'
+#cycle_times:
+#  - T18
+model_components:
+  - geos_cf
+
+skip_r2d2: false
+
+models:
+  geos_cf:
+    jedi_build_method: use_existing
+    check_for_obs: false
+    window_length: PT6H
+    window_type: 3D
+
+    # Must match the background ingest override above.
+    background_experiment: geos_cf_oper
+    background_time_offset: PT9H
+    horizontal_resolution: c360
+    vertical_resolution: 72
+    npx: 361
+    npy: 361
+
+    # Match the observations ingested by override_obs.yaml.
+    observations:
+      - tempo_no2_tropo
+
+    observation_providers:
+      - tempo_no2_tropo: nasa_v4
+
+    swell_static_files: /discover/nobackup/projects/gmao/geos_cf_dev/SwellStaticFiles
