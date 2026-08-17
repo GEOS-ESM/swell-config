@@ -1,0 +1,34 @@
+# Override for:
+#   swell create ingest_obs_cf -o override_obs.yaml
+#
+# This downloads, converts, and ingests the observation files needed by the
+# matching 18Z HOFX run.
+
+experiment_id: ops_cf_obs_ingest_202510
+
+start_cycle_point: '2025-10-10T00:00:00Z'
+final_cycle_point: '2025-10-10T18:00:00Z'
+cycle_times:
+  - T18
+model_components:
+  - geos_cf
+
+download_convert_pipeline: true
+
+models:
+  geos_cf:
+    jedi_build_method: use_existing
+    window_length: PT6H
+
+    obs_to_download:
+      - tempo_no2_tropo
+    obs_to_ingest:
+      - tempo_no2_tropo
+
+    # Directory containing ioda-converter scripts.
+    converter_path: /discover/nobackup/projects/jcsda/s2127/maryamao/jedi-bundle/build-intel-1.9/bin/
+
+    # Set true for training/preview. Set false for operational R2D2 writes.
+    dry_run: false
+    store_as_symlink: false
+
