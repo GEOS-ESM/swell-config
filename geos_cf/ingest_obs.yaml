@@ -6,8 +6,8 @@
 
 experiment_id: ops_cf_obs_ingest_202510
 
-start_cycle_point: '2025-10-11T00:00:00Z'
-final_cycle_point: '2025-10-20T00:00:00Z'
+start_cycle_point: '2025-10-10T00:00:00Z'
+final_cycle_point: '2025-10-10T18:00:00Z'
 cycle_times:
   - T18
 model_components:
