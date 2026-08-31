@@ -29,6 +29,13 @@ models:
       - tropomi_s5p_co_total
       - tropomi_s5p_no2_tropo
 
+    # Switch TROPOMI from NRTI to OFFL for dates where NRTI is unavailable.
+    download_obs_config_overrides:
+      tropomi_s5p_co_total:
+        s3_source: 's3://meeo-s5p/OFFL/L2__CO____/YYYY/MM/DD'
+      tropomi_s5p_no2_tropo:
+        s3_source: 's3://meeo-s5p/OFFL/L2__NO2___/YYYY/MM/DD'
+
     # Directory containing ioda-converter scripts.
     converter_path: /discover/nobackup/projects/gmao/geos_cf_dev/GEOS-CF3-dev/jedi-bundle_17082026/build/bin/
 
