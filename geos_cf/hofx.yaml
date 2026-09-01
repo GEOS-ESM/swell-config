@@ -23,7 +23,6 @@ models:
 
     # Must match the background ingest override above.
     background_experiment: geos_cf_oper
-    background_time_offset: PT9H
     horizontal_resolution: c360
     vertical_resolution: 72
     npx: 361
@@ -36,4 +35,3 @@ models:
     observation_providers:
       tempo_no2_tropo: nasa_v4
 
-    swell_static_files: /discover/nobackup/projects/gmao/geos_cf_dev/SwellStaticFiles
