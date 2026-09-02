@@ -4,7 +4,7 @@
 # This ingests/registers the 09Z GEOS-CF background forecast files in R2D2.
 # The HOFX example at 18Z will fetch forecast start 09Z, step PT9H.
 
-experiment_id: ops_cf_background_ingest_20251002T09Z
+experiment_id: training_ingest_background
 
 start_cycle_point: '2025-10-10T09:00:00Z'
 final_cycle_point: '2025-10-10T09:00:00Z'

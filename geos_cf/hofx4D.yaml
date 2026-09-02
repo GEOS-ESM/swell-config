@@ -19,7 +19,9 @@ models:
   geos_cf:
     check_for_obs: false
     window_length: PT6H
-    window_type: 3D
+    window_type: 4D
+    background_frequency: PT1H
+    jedi_forecast_model: pseudo_model
 
     # Must match the background ingest override above.
     background_experiment: geos_cf_oper
@@ -34,4 +36,3 @@ models:
 
     observation_providers:
       tempo_no2_tropo: nasa_v4
-
