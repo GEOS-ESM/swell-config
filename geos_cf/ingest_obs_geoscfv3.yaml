@@ -1,0 +1,44 @@
+# Override for:
+#   swell create ingest_obs_cf -o ingest_obs_geoscfv3.yaml
+#
+# This downloads, converts, and ingests the observation files needed by the
+# GEOS-CF v3 prototype HOFX run.
+
+experiment_id: prototype_geoscfv3_obs_ingest
+
+start_cycle_point: '2025-05-01T00:00:00Z'
+final_cycle_point: '2025-05-03T00:00:00Z'
+cycle_times:
+  - T18
+model_components:
+  - geos_cf
+
+download_convert_pipeline: true
+
+models:
+  geos_cf:
+    jedi_build_method: use_existing
+    window_length: PT6H
+
+    obs_to_download:
+      - omps_o3_nm_total
+      - tropomi_s5p_co_total
+      - tropomi_s5p_no2_tropo
+    obs_to_ingest:
+      - omps_o3_nm_total
+      - tropomi_s5p_co_total
+      - tropomi_s5p_no2_tropo
+
+    # Switch TROPOMI from NRTI to OFFL for dates where NRTI is unavailable.
+    download_obs_config_overrides:
+      tropomi_s5p_co_total:
+        s3_source: 's3://meeo-s5p/OFFL/L2__CO____/YYYY/MM/DD'
+      tropomi_s5p_no2_tropo:
+        s3_source: 's3://meeo-s5p/OFFL/L2__NO2___/YYYY/MM/DD'
+
+    # Directory containing ioda-converter scripts.
+    converter_path: /discover/nobackup/projects/gmao/geos_cf_dev/GEOS-CF3-dev/jedi-bundle_17082026/build/bin/
+
+    # Set true for training/preview. Set false for operational R2D2 writes.
+    dry_run: false
+    store_as_symlink: false
