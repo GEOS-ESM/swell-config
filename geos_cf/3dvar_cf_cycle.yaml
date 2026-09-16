@@ -18,7 +18,8 @@ models:
     forecast_output_frequency: PT1H
 
     # Inner-loop iterations
-    number_of_iterations: 100
+    number_of_iterations:
+      - 100
     gradient_norm_reduction: 1e-6
 
     # Control variables in the CV.
