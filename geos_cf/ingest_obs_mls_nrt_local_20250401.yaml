@@ -1,0 +1,39 @@
+# Override for:
+#   swell create ingest_obs_cf -o ingest_obs_mls_nrt_local_20250401.yaml
+#
+# Window target: 2025-04-01 21Z -> 2025-04-02 03Z
+# With window_length PT6H, this corresponds to a single 00Z cycle on 2025-04-02.
+
+experiment_id: test_ingest_obs_mls_nrt_local_20250401
+
+start_cycle_point: '2025-04-02T00:00:00Z'
+final_cycle_point: '2025-04-02T00:00:00Z'
+cycle_times:
+  - T00
+
+model_components:
+  - geos_cf
+
+download_convert_pipeline: true
+
+models:
+  geos_cf:
+    window_length: PT6H
+
+    obs_to_download:
+      - mls_o3_nrt
+    obs_to_ingest:
+      - mls_o3_nrt
+
+    # Use local extracted NRT chunk files on Discover.
+    download_obs_config_overrides:
+      mls_o3_nrt:
+        retrieval_method: local
+        local_file_template: /discover/nobackup/projects/gmao/geos_cf_dev/GEOS-CF3-dev/MLS_nrt/Y%Y/M%m/MLS-Aura_L2GP-O3_v05-*-NRT-*-c01_%Yd%jt*.he5
+
+    # Optional: set if you want a non-default ioda-converters location.
+    converter_path: /discover/nobackup/jbarre/geosdev/jedi-bundle-test/build/bin
+
+    # Keep these explicit for test clarity.
+    dry_run: false
+    store_as_symlink: false
