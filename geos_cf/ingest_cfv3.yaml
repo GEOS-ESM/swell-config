@@ -13,6 +13,8 @@ model_components:
 
 download_convert_pipeline: true
 
+r2d2_server: cfdev_server
+
 models:
   geos_cf:
     window_length: PT6H
