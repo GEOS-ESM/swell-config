@@ -3,7 +3,7 @@
 #
 # This downloads, converts, and ingests the observation for cfv3
 
-experiment_id: training_ingest_obs
+experiment_id: ingest_obs_cfv3
 
 start_cycle_point: '2025-03-31T18:00:00Z'
 final_cycle_point: '2025-04-01T18:00:00Z'
