@@ -2,36 +2,45 @@
 #   swell create 3dvar_cf -o 3dvar_cfv3.yaml
 #
 
-experiment_id: 3dvar_cfv3
+#   swell create 3dvar_cf_cycle -o /Users/jbarre/swell-config/geos_cf/3dvar_cf_cycle.yaml --store-r2d2
 
-start_cycle_point: '2025-04-02T00:00:00Z'
-final_cycle_point: '2025-04-15T00:00:00Z'
+experiment_id: cfv3_3dvar_cycle
+
+r2d2_experiment_id: cfv3_3dvar_cycle
+r2d2_server: cfdev_server
+
+# Four 6-hour windows in one day: 00Z, 06Z, 12Z, 18Z.
+start_cycle_point: '2025-04-02T06:00:00Z'
+final_cycle_point: '2025-04-03T06:00:00Z'
 
 model_components:
   - geos_cf
 
-r2d2_server: cfdev_server
-
 models:
   geos_cf:
-    # Initial backgrounds and restarts come from this R2D2 experiment.
+    window_length: PT6H
+    window_type: 3D
+    forecast_output_frequency: PT1H
     background_experiment: cf2_c90_nm_bkg_test
+
+    number_of_iterations:
+      - 100
+    gradient_norm_reduction: 1e-6
 
     analysis_variables:
       - volume_mixing_ratio_of_o3
       - volume_mixing_ratio_of_no2
       - volume_mixing_ratio_of_co
 
-    observations:
-      - mls_o3_nrt
-      - omps_o3_nm_total
-      - tropomi_s5p_no2_tropo
-      - tropomi_s5p_co_total
-
-    # Background error: background-file stddev, scaled per control variable.
     saber_central_block: bump_nicas
     saber_outer_block: stddev_bkg_scaled
     stddev_scale_factors:
       volume_mixing_ratio_of_o3: 0.05
       volume_mixing_ratio_of_co: 0.3
       volume_mixing_ratio_of_no2: 0.2
+
+    observations:
+      - mls_o3_nrt
+      - omps_o3_nm_total
+      - tropomi_s5p_no2_tropo
+      - tropomi_s5p_co_total
