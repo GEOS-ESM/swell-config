@@ -1,0 +1,6 @@
+slurm_directives_tasks:
+  RunJediVariationalExecutable:
+    all:
+      qos: debug
+#  RunForecast: 
+#    qos: debug -> fixme as this is hardcoded in the flow.cylc...
