@@ -2,7 +2,7 @@
 #   swell create 3dvar_cf -o 3dvar_cfv3.yaml
 #
 
-#   swell create 3dvar_cf_cycle -o /Users/jbarre/swell-config/geos_cf/3dvar_cf_cycle.yaml --store-r2d2
+#   swell create 3dvar_cf_cycle -o /Users/jbarre/swell-config/geos_cf/3dvar_cf_cycle.yaml
 
 experiment_id: cfv3_3dvar_cycle
 
@@ -13,7 +13,7 @@ existing_jedi_build_directory: /discover/nobackup/jbarre/geosdev/jedi-bundle-tes
 
 # Four 6-hour windows in one day: 00Z, 06Z, 12Z, 18Z.
 start_cycle_point: '2025-04-02T06:00:00Z'
-final_cycle_point: '2025-04-12T06:00:00Z'
+final_cycle_point: '2025-04-03T06:00:00Z'
 
 model_components:
   - geos_cf
@@ -23,6 +23,11 @@ models:
     window_length: PT6H
     window_type: 3D
     forecast_output_frequency: PT1H
+    # Optional lat-lon history collections written and stored in R2D2 in addition to the
+    # always-written 'bkg' collection. Options: chm, met. Use [] to write only 'bkg'.
+    additional_forecast_collections:
+      - chm
+      - met
     background_experiment: cf2_c90_nm_bkg_test
     rst_experiment: cf2_c90_nm_bkg_test
 
