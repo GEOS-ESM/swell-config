@@ -42,6 +42,11 @@ models:
 
     saber_central_block: bump_nicas
     saber_outer_block: stddev_bkg_scaled
+    # Override the BUMP/NICAS localization files used by the bump_nicas central block
+    # (defaults: cycle_dir, 'geos_cf', 'fixedlevel_H_500_300_V_00_03').
+    bump_nicas_data_directory: /discover/nobackup/jbarre/geosdev/standalone_jedi/outputs/bump_cf_v3_n24
+    bump_nicas_files_prefix: geos_cf_v3
+    bump_nicas_group_name: fixedlevel_H_1600_850_V_00_03
     stddev_scale_factors:
       volume_mixing_ratio_of_o3: 0.05
       volume_mixing_ratio_of_co: 0.3
